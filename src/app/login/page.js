@@ -11,7 +11,7 @@ export default function LogingPage(){
         ev.preventDefault();
         setLoginInProgress(true);
       
-       await signIn('credentials',{email,password});
+       await signIn('credentials',{email,password,callbackUrl:'/'});
         setLoginInProgress(false);
     }
     return (
@@ -31,7 +31,8 @@ export default function LogingPage(){
             <div className="mt-4 text-center text-gray-500">
                     or login with provider
                 </div>
-                <button  className="mt-2 flex gap-4 justify-center"> 
+                <button type="button" onClick={()=> signIn('google',{callbackUrl:'/'})}
+                 className="mt-2 flex gap-4 justify-center"> 
                 <Image src={'/google.png'} alt={''} width={24} height={32} />
                 login with google
                 </button>

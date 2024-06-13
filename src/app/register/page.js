@@ -62,7 +62,8 @@ export default function page(){
                 <div className="mt-4 text-center text-gray-500">
                     or login with provider
                 </div>
-                <button className="mt-2 flex gap-4 justify-center"> 
+                <button  onClick={()=> signIn('google',{callbackUrl:'/'})} 
+                className="mt-2 flex gap-4 justify-center"> 
                 <Image src={'/google.png'} alt={''} width={24} height={32} />
                 login with google
                 </button>
