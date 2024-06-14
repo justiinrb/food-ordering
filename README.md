@@ -36,5 +36,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 
-_ID = "407885387910-ong0fl03m10r2aakmcgosqmmpg6vlqsr.apps.googleusercontent.com"
-GSECET = "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"
+
