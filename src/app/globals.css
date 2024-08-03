@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +19,7 @@ input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="text"]:disabled{
 
-    @apply bg-gray-200 cursor-not-allowed;
+    @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500 ;
 
 }
 button{

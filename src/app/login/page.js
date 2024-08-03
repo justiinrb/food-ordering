@@ -1,24 +1,20 @@
+// se ejecuta en el lado del cliente (en el navegador) en lugar del lado del servidor.
 'use client';
+
 import { use, useState } from "react";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
+
 export default function LogingPage(){
     const[email,setEmail]=useState('');
     const[password,setPassword] = useState('');
     const[loginInProgress,setLoginInProgress]= useState(false)
    async function handleFormSubmit(ev){
         ev.preventDefault();
-        setLoginInProgress(true)
-       const {ok} = await fetch('api/login', {
-            body: JSON.stringify({email,password}),
-            headers:{'content-type':'application/json'},
-            method:'POST'
-        });
-        if(ok){
-
-        }else{
-
-        }
-        setLoginInProgress(false)
+        setLoginInProgress(true);
+      
+       await signIn('credentials',{email,password,callbackUrl:'/'});
+        setLoginInProgress(false);
     }
     return (
         <section className="mt-8">
@@ -26,18 +22,19 @@ export default function LogingPage(){
                 Login
             </h1>
             <form className="max-w-xs mx-auto" onSubmit={handleFormSubmit}>
-            <input type="email" placeholder="email" value={email} 
-                disabled={setLoginInProgress}
+            <input type="email" name="email" placeholder="email" value={email} 
+                disabled={loginInProgress}
                 onChange={ev => setEmail(ev.target.value)}/>
-                <input type="password" placeholder="password" value={password}
-                disabled={setLoginInProgress}
+            <input type="password" name="password" placeholder="password" value={password}
+                disabled={loginInProgress}
                 onChange={ev => setPassword(ev.target.value)}
                 />
-            <button disabled={setLoginInProgress} type="submit">Login</button>
+            <button disabled={loginInProgress} type="submit">Login</button>
             <div className="mt-4 text-center text-gray-500">
                     or login with provider
                 </div>
-                <button  className="mt-2 flex gap-4 justify-center"> 
+                <button type="button" onClick={()=> signIn('google',{callbackUrl:'/'})}
+                 className="mt-2 flex gap-4 justify-center"> 
                 <Image src={'/google.png'} alt={''} width={24} height={32} />
                 login with google
                 </button>
